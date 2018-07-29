@@ -1,0 +1,16 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по названию или категории</title>
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head>
+<body>
+<h4>Введите данные для поиска</h4>
+    <form class="col s6 offset-s3 row" method="POST">
+    {% csrf_token %}
+        {{form.as_p}}
+  <button id="search_button" class="btn waves-effect blue white-text " type="submit">Поиск</button>
+    </form>
+</body>
+</html>

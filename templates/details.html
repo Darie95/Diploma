@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{quiz.name}}</title>
+</head>
+<body>
+<img width=100 src="{{quiz.label.url}}">
+<h1>{{quiz.name}}</h1><br>
+<h3>О квизе:</h3> {{quiz.description}}
+<p>
+<h3>Категория:</h3> {{quiz.category}}</p>
+<p>
+<h3>Веб-сайт:</h3> <a href="{{quiz.site}}">{{quiz.site}}</a></p>
+<p>
+<h3>Дата ближайшей игры:</h3> {{quiz.next_game}}<br></p>
+<a href="{% url 'criteria' quiz.id %}">Оцените квиз</a><br>
+<form class="col s6 offset-s3 row" method="POST">
+    {% csrf_token %}
+    {{form_comments.as_p}}
+
+    <span style="color:red" style="font-size: 20px" style="background-color:whitesmoke">{{warning}}</span>
+
+    <button id="search_button" class="btn waves-effect blue white-text "
+            type="submit">Опубликовать
+    </button>
+</form>
+
+<div><h3>Отзывы</h3>
+    {% for comment in comments %}
+    <h5>{{comment.author_com}}</h5>
+    <h4>{{comment.comments_text}}</h4> <br>
+    {% endfor %}
+</div>
+{% if request.user.is_authenticated %}
+<p>Вы вошли как {{request.user}}</p>
+<a href="{% url 'logout' %}">Выйти</a>
+{% endif %}
+
+<a href="{% url 'main' %}">Вернуться на главную страницу</a>
+</body>
+</html>

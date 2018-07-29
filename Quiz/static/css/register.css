@@ -1,0 +1,41 @@
+h3 {
+    color: midnightblue;
+    font-family: "Juice ITC", cursive;
+    font-size: 36pt;
+     margin-left: 50px;
+
+}
+
+h4 {
+    color: darkslateblue ;
+    font-family: "Juice ITC", cursive;
+    font-size: 30pt;
+     margin-left: 50px;
+
+}
+
+form { margin-left: 50px;
+    background-color: aquamarine;
+    font-size: 25pt;
+    align-items: center;
+
+}
+
+.field {line-heignt: 100px}
+
+button {font-size: 20pt;
+ margin-left: 100px;}
+
+a:link { color: midnightblue;
+     font-family: "Bookman Old Style";
+    font-size: 18pt;
+   margin-left: 50px;
+
+
+}
+
+a:visited { color: crimson;
+     font-family: "Bookman Old Style" ;
+    font-size: 18pt;
+ margin-left: 50px;
+}

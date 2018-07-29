@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты поиска</title>
+</head>
+<body>
+<h3>По вашему запросу обнаружены следующие совпадения:</h3>
+{% for item in items %}
+<a href="{% url 'quiz' item.id %}">{{item.name}}</a><br>
+Категория: {{item.category}}
+{% endfor %}
+</body>
+</html>

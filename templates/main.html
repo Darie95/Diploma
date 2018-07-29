@@ -1,0 +1,49 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Квизы Минска</title>
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+</head>
+<body>
+<h1 style="text-align: center">Всё о всех квизах Минска</h1><br>
+<h3 style="text-align: center">Добро пожаловать на сайт с подробной информацией
+    о квизах Минска для любителей интеллектуальных игр</h3>
+<br><br>
+{% if request.user.is_authenticated %}
+<p style="text-align: right" style="font-size: 24px">Вы вошли как
+    {{request.user}}</p> <br>
+{% endif %}
+<div>
+    <img width=200 src="{% static 'catalog.png'%}">
+    <img width=200 src="{% static 'rating.png'%}">
+    <img width=200 src="{% static 'afisha.jpg'%}">
+    <img width=180 src="{% static 'anketa.jpg'%}">
+</div>
+<div class="main" style="align-content: center">
+    <a href="{% url 'quiz_all'%}">Каталог квизов</a>
+    <a href="{% url 'rating'%}">Рейтинги</a>
+    <a href="{% url 'afisha'%}">Афиша квизов</a>
+    <a href="{% url 'quiz_all'%}">Анкета квизомана</a></div>
+<br><br><br><br><br>
+<div class="bottom" style="align-content: center">
+    <img width=200 src="{% static 'search.jpg'%}">
+    <img width=200 src="{% static 'registration.png'%}">
+    <img width=200 src="{% static 'users.png'%}">
+    {% if request.user.is_authenticated %}
+    <img width=180 src="{% static 'exit.jpg'%}">
+    {% endif %}
+</div>
+<div>
+    <a href="{% url 'search' %}" class="log">Поиск по сайту</a>
+    <a href="{% url 'register' %}" class="log">Зарегистрироваться</a>
+    <a href="{% url 'login' %}" class="log">Уже зарегистрирован</a>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}" style="text-align: right">Выйти</a>
+    {% endif %}
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Афиша квизов</title>
+<link rel="stylesheet" href="{% static 'css/afisha.css'%}">
+</head>
+<body>
+<h3>Фильтр квизов по дате</h3><br>
+<form class="col s6 offset-s3 row" method="POST">
+    {% csrf_token %}
+        {{form.as_p}}
+    {{form.errors}}
+  <button id="search_button" class="btn waves-effect blue white-text " type="submit">Поиск</button>
+    </form><br>
+<h3>{{text}}</h3><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Дата регистрации</td>
+            <td>Место игры</td>
+            <td>Дата игры</td>
+         </tr>
+
+{% for item in data %}
+             <tr>
+                 <td> {{item.for_quiz.name}} </td>
+      <td> {{item.game_date_registration}} </td>
+      <td> {{item.game_place}} </td>
+      <td> {{item.game_date}} </td>
+       </tr>
+
+    {% endfor %}
+
+</table>
+
+
+</body>
+</html>

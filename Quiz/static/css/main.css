@@ -1,0 +1,36 @@
+h1 {
+    color: lightcoral;
+    font-family: "Comic Sans MS";
+    font-size: 48pt;
+    background-color: antiquewhite;
+}
+
+h3 {
+    color: purple;
+    font-family: "Juice ITC", cursive;
+    font-size: 24pt;
+
+}
+
+.main {display: inline-block}
+img {margin-right: 50px;
+    margin-left: 50px;
+}
+
+a:link { color: midnightblue;
+     font-family: "Juice ITC", cursive;
+    font-size: 20pt;
+   margin-left: 80px;
+    margin-right: 50px;
+
+}
+
+a:visited { color: crimson;
+     font-family: "Juice ITC", cursive;
+    font-size: 20pt;
+ margin-left: 80px;
+margin-right: 50px;
+}
+
+p {font-family: bold;
+color: mediumvioletred}

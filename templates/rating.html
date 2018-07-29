@@ -1,0 +1,89 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Рейтинги</title>
+      <link rel="stylesheet" href="{% static 'css/rating.css'%}">
+</head>
+<body>
+<h3 style="text-align: center"> Общий рейтинг </h3>
+<p style="text-align: center"> Рейтинг рассчитан на основе суммы средних баллов по каждому критерию, взвешенных на соответсвующий коэффициент</p><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Оценка</td>
+              </tr>
+    {% for key, value in total.items%}
+    <tr>
+<td>{{key}}</td>
+<td>{{value}}</td>
+    </tr>
+{% endfor %}</table><br>
+<h3 style="text-align: center"> Рейтинг по критерию "{{positions.0}}" </h3><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Оценка</td>
+              </tr>
+{% for quiz in result_1%}
+    <tr>
+<td>{{quiz.name}}</td>
+<td>{{quiz.amount}}</td>
+    </tr>
+{% endfor %}</table><br>
+<h3 style="text-align: center"> Рейтинг по критерию "{{positions.1}}" </h3><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Оценка</td>
+              </tr>
+{% for quiz in result_2%}
+<tr>
+<td>{{quiz.name}}</td>
+<td>{{quiz.amount}}</td>
+    </tr> {% endfor %} </table><br>
+<h3 style="text-align: center"> Рейтинг по критерию "{{positions.2}}" </h3><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Оценка</td>
+              </tr>
+{% for quiz in result_3%}
+<tr>
+<td>{{quiz.name}}</td>
+<td>{{quiz.amount}}</td>
+    </tr>
+{% endfor %}
+</table> <br>
+<h3 style="text-align: center"> Рейтинг по критерию "{{positions.3}}" </h3><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Оценка</td>
+              </tr>
+{% for quiz in result_4%}
+<tr>
+<td>{{quiz.name}}</td>
+<td>{{quiz.amount}}</td>
+    </tr>
+{% endfor %}
+</table> <br>
+<h3 style="text-align: center"> Рейтинг по критерию "{{positions.4}}" </h3><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Оценка</td>
+              </tr>
+{% for quiz in result_5%}
+<tr>
+<td>{{quiz.name}}</td>
+<td>{{quiz.amount}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<br><br><br>
+<a href="{% url 'main' %}" style="alignment: center">Вернуться на главную страницу</a>
+
+</body>
+</html>

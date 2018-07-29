@@ -1,0 +1,21 @@
+h3 {
+    color: purple;
+    font-family: "Comic Sans MS";
+    font-size: 36pt;
+    background-color: thistle;
+    margin-left: 50px;
+}
+
+table {margin-left: 400px;
+      border-color: purple;
+
+
+}
+
+td {font-family: Constantia;
+    font-size: 20pt;
+    align-content: center;
+    border-color: purple;
+    border-style: wave;
+    }
+

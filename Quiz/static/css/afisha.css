@@ -1,0 +1,20 @@
+h3 {text-align: center;
+color: green;
+background-color: lightgreen;
+font-size:36px;}
+
+table {
+    margin-left: 400px;
+    color: darkslategray;
+    border-style: solid;
+    border-color: green;
+    tab-size: 300px;
+    font-size:24px;
+
+}
+
+button {font-size:24px;}
+
+form {margin-left: 500px;
+size: 300px;
+ font-size:24px;}

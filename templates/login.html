@@ -1,0 +1,26 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+</head>
+<body>
+<h3>Для входа введите свой логин и пароль </h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="input-field">
+          Логин:
+            {{ form.username}}
+        </div><br>
+     <div class="input-field">
+          Пароль:
+            {{ form.password}}
+        </div><br>
+    <button type ="submit">Войти</button>
+</form>
+
+<a href="{% url 'register' %}">Нет учетной записи - зарегистрируйся скорее :)</a>
+<a href="{% url 'main' %}">Вернуться на главную страницу</a>
+</body>
+</html>

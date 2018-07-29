@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог квизов</title>
+     <link rel="stylesheet" href="{% static 'css/about.css'%}">
+</head>
+<body>
+<h3>Полный список квизов</h3><br>
+<table border = "3">
+         <tr>
+            <td>Название</td>
+            <td>Бренд</td>
+            <td>Категория</td>
+         </tr>
+
+         {% for quiz in quiz_all %}
+             <tr>
+             <td><a href="{% url 'quiz' quiz.id %}">{{quiz.name}}</a></td>
+             <td>
+                 <img width=100 src="{{quiz.label.url}}">
+                 </td>
+             <td>{{quiz.category}}</td>
+          </tr>
+         {% endfor %}
+</table>
+<br><br><br>
+<a href="{% url 'main' %}" style="margin-left: 500px" style="font-size: 24px">Вернуться на главную страницу</a>
+<br><br><br>
+{% if request.user.is_authenticated %}
+<p>Вы вошли как {{request.user}}</p>
+<br><br><br>
+<a href="{% url 'logout' %}">Выйти</a>
+{% endif %}
+</body>
+</html>

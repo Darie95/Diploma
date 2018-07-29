@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Оцените квиз {{quiz.name}}</title>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Пожалуйста, оцените квиз {{quiz.name}} по предложенным ниже критериям.
+        Ваша оценка поможет сформировать честный и непредвзятый рейтинг.</h3>
+    {% for position in positions %}
+    <label> {{position.name}}: <select name="mark">
+        {% for number in numbers %}
+        <option value={{ number }}>
+            {{ number }}
+        </option>
+        {% endfor %} </select> </label><br><br>
+    {% endfor %}
+
+    <button type="submit">Сохранить</button>
+</form><br>
+<span style="color:red" style="font-size: 20px">{{warning}}</span><br>
+<a href="{% url 'register' %}">Нет учетной записи - зарегистрируйся скорее :)</a>
+
+</body>
+</html>
