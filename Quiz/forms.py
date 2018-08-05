@@ -1,5 +1,5 @@
 from django.core.exceptions import ValidationError
-from django.forms import EmailField, CharField, ModelForm
+from django.forms import EmailField, CharField, ModelForm, DateInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
@@ -43,6 +43,7 @@ class CommentForm(ModelForm):
 
 
 class FilterForm(forms.Form):
-    min_date = forms.DateField(label='С')
-    max_date = forms.DateField(label='По')
+    min_date=forms.DateField(label = 'С', widget= forms.DateInput(attrs={'class':'datepicker'}))
+    max_date=forms.DateField(label = 'По', widget= forms.DateInput(attrs={'class':'datepicker'}))
+
 

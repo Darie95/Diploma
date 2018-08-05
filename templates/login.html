@@ -12,10 +12,12 @@
     <div class="input-field">
           Логин:
             {{ form.username}}
+        {{form.errors}}
         </div><br>
      <div class="input-field">
           Пароль:
             {{ form.password}}
+         {{form.errors}}
         </div><br>
     <button type ="submit">Войти</button>
 </form>

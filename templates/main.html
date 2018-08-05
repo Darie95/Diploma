@@ -13,7 +13,8 @@
 <br><br>
 {% if request.user.is_authenticated %}
 <p style="text-align: right" style="font-size: 24px">Вы вошли как
-    {{request.user}}</p> <br>
+    {{request.user}}<a href="{% url 'changes'%}">Личный кабинет</a></p>
+<br>
 {% endif %}
 <div>
     <img width=200 src="{% static 'catalog.png'%}">
@@ -25,7 +26,7 @@
     <a href="{% url 'quiz_all'%}">Каталог квизов</a>
     <a href="{% url 'rating'%}">Рейтинги</a>
     <a href="{% url 'afisha'%}">Афиша квизов</a>
-    <a href="{% url 'quiz_all'%}">Анкета квизомана</a></div>
+    <a href="{% url 'anketa'%}">Анкета квизомана</a></div>
 <br><br><br><br><br>
 <div class="bottom" style="align-content: center">
     <img width=200 src="{% static 'search.jpg'%}">

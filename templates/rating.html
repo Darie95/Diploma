@@ -28,7 +28,7 @@
 {% for quiz in result_1%}
     <tr>
 <td>{{quiz.name}}</td>
-<td>{{quiz.amount}}</td>
+<td>{{quiz.amount|floatformat}}</td>
     </tr>
 {% endfor %}</table><br>
 <h3 style="text-align: center"> Рейтинг по критерию "{{positions.1}}" </h3><br>
@@ -40,7 +40,7 @@
 {% for quiz in result_2%}
 <tr>
 <td>{{quiz.name}}</td>
-<td>{{quiz.amount}}</td>
+<td>{{quiz.amount|floatformat}}</td>
     </tr> {% endfor %} </table><br>
 <h3 style="text-align: center"> Рейтинг по критерию "{{positions.2}}" </h3><br>
 <table border = "3">
@@ -51,7 +51,7 @@
 {% for quiz in result_3%}
 <tr>
 <td>{{quiz.name}}</td>
-<td>{{quiz.amount}}</td>
+<td>{{quiz.amount|floatformat}}</td>
     </tr>
 {% endfor %}
 </table> <br>
@@ -64,7 +64,7 @@
 {% for quiz in result_4%}
 <tr>
 <td>{{quiz.name}}</td>
-<td>{{quiz.amount}}</td>
+<td>{{quiz.amount|floatformat}}</td>
     </tr>
 {% endfor %}
 </table> <br>
@@ -77,7 +77,7 @@
 {% for quiz in result_5%}
 <tr>
 <td>{{quiz.name}}</td>
-<td>{{quiz.amount}}</td>
+<td>{{quiz.amount|floatformat}}</td>
     </tr>
 {% endfor %}
 </table>

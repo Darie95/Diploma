@@ -1,0 +1,30 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика</title>
+</head>
+<body>
+<h3>На вопросы анкеты уже ответило {{result}} человек(а)</h3>
+<h3>{% if note_2 %}
+{{note_2}} {{request.user}}</h3>
+<a href="{% url 'anketa'%}">Заполните анкету по этой ссылке</a>
+{% endif %}
+   <h3> {% if note_1 %}
+    {{note_1}} {{request.user}}
+{% endif %} </h3>
+<h4> Ответы на вопрос: {{data.0}} </h4>
+<label><img src="{% static 'data_1.png'%}"> </label>
+<h4> Ответы на вопрос: {{data.1}} </h4>
+<label><img src="{% static 'data_2.png'%}"> </label>
+<h4> Ответы на вопрос: {{data.2}} </h4>
+<label><img src="{% static 'data_3.png'%}"> </label>
+<h4> Ответы на вопрос: {{data.3}} </h4>
+<label><img src="{% static 'data_4.png'%}"> </label>
+<h4> Ответы на вопрос: {{data.4}} </h4>
+<label><img src="{% static 'data_5.png'%}"> </label>
+<h4> Ответы на вопрос: {{data.5}} </h4>
+<label><img src="{% static 'data_6.png'%}"> </label>
+</body>
+</html>

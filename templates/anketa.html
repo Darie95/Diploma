@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета квизомана</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Пожалуйста, заполните несложную анкетку.</h3>
+{% for item in anketa %}
+    <label>{{ item.question }} : <select name="mark">
+    {% for quest in item.questions.all %}
+        <option value={{quest.id}}>
+            {{quest.option }}
+             </option> {% endfor %}
+         </select> </label> <br><br>{% endfor %}
+
+    <button type="submit">Сохранить</button>
+</form><br>
+{{warning}}
+{{users}}
+<a href="{% url 'anketa_result'%}">Посмотреть статистику</a>
+
+</body>
+</html>

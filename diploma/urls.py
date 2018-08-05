@@ -38,6 +38,16 @@ urlpatterns = [
     url(r'^rating/$', views.rating, name='rating'),
     url(r'^afisha/$', views.Dates.as_view(), name='afisha'),
     url(r'^thanks/$', views.thanks, name='thanks'),
+    url(r'^anketa/$', views.AnketaWrite.as_view(), name='anketa'),
+    url(r'^anketa_result/$', views.anketa_result, name='anketa_result'),
+    url(r'^anketa_edit/$', views.AnketaEdit.as_view(), name='anketa_edit'),
+    url(r'^anketa_delete/$', views.anketa_delete, name='anketa_delete'),
+    url(r'^comment_edit/(\d+)/$', views.CommentEdit.as_view(), name='comment_edit'),
+    url(r'^comment_delete/(\d+)/$', views.comment_delete, name='comment_delete'),
+    url(r'^value_delete/(\d+)/$', views.value_delete, name='value_delete'),
+    url(r'^value_edit/(\d+)/$', views.ValueEdit.as_view(), name='value_edit'),
+    url(r'^changes/$', views.ChangeData.as_view(), name='changes'),
+    url(r'^participant/(\d+)/$', views.participant, name='participant'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

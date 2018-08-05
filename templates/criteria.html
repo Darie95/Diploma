@@ -21,7 +21,8 @@
     <button type="submit">Сохранить</button>
 </form><br>
 <span style="color:red" style="font-size: 20px">{{warning}}</span><br>
+{% if request.user.is_not_authenticated %}
 <a href="{% url 'register' %}">Нет учетной записи - зарегистрируйся скорее :)</a>
-
+{% endif %}
 </body>
 </html>
