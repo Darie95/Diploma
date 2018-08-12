@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^value_edit/(\d+)/$', views.ValueEdit.as_view(), name='value_edit'),
     url(r'^changes/$', views.ChangeData.as_view(), name='changes'),
     url(r'^participant/(\d+)/$', views.participant, name='participant'),
+    url(r'^brainstorm/$', views.Brainstorm.as_view(), name='brainstorm'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

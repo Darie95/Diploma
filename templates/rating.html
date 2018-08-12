@@ -1,13 +1,18 @@
 {% load static %}
-<html lang="en">
+<p lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Рейтинги</title>
       <link rel="stylesheet" href="{% static 'css/rating.css'%}">
 </head>
-<body>
+    <h1 style="text-align: center" style="color: lightcoral"
+    style="font-size: 48pt" style="background-color: antiquewhite">
+    Quizomania: все о всех квизах Минска</h1><br>
+{% include 'personal.html' %}
+<p>
 <h3 style="text-align: center"> Общий рейтинг </h3>
 <p style="text-align: center"> Рейтинг рассчитан на основе суммы средних баллов по каждому критерию, взвешенных на соответсвующий коэффициент</p><br>
+<p style="text-align: center">
 <table border = "3">
          <tr>
             <td>Название</td>
@@ -18,9 +23,9 @@
 <td>{{key}}</td>
 <td>{{value}}</td>
     </tr>
-{% endfor %}</table><br>
+    {% endfor %}</table></p><br>
 <h3 style="text-align: center"> Рейтинг по критерию "{{positions.0}}" </h3><br>
-<table border = "3">
+<p style="text-align: center"><table border = "3">
          <tr>
             <td>Название</td>
             <td>Оценка</td>
@@ -30,9 +35,9 @@
 <td>{{quiz.name}}</td>
 <td>{{quiz.amount|floatformat}}</td>
     </tr>
-{% endfor %}</table><br>
+    {% endfor %}</table></p><br>
 <h3 style="text-align: center"> Рейтинг по критерию "{{positions.1}}" </h3><br>
-<table border = "3">
+<p style="text-align: center"><table border = "3">
          <tr>
             <td>Название</td>
             <td>Оценка</td>
@@ -41,9 +46,9 @@
 <tr>
 <td>{{quiz.name}}</td>
 <td>{{quiz.amount|floatformat}}</td>
-    </tr> {% endfor %} </table><br>
+</tr> {% endfor %} </table></p><br>
 <h3 style="text-align: center"> Рейтинг по критерию "{{positions.2}}" </h3><br>
-<table border = "3">
+<p style="text-align: center"><table border = "3">
          <tr>
             <td>Название</td>
             <td>Оценка</td>
@@ -54,9 +59,9 @@
 <td>{{quiz.amount|floatformat}}</td>
     </tr>
 {% endfor %}
-</table> <br>
+</p></table> <br>
 <h3 style="text-align: center"> Рейтинг по критерию "{{positions.3}}" </h3><br>
-<table border = "3">
+<p style="text-align: center"><table border = "3">
          <tr>
             <td>Название</td>
             <td>Оценка</td>
@@ -67,9 +72,9 @@
 <td>{{quiz.amount|floatformat}}</td>
     </tr>
 {% endfor %}
-</table> <br>
+</table> </p> <br>
 <h3 style="text-align: center"> Рейтинг по критерию "{{positions.4}}" </h3><br>
-<table border = "3">
+<p style="text-align: center"><table border = "3">
          <tr>
             <td>Название</td>
             <td>Оценка</td>
@@ -80,10 +85,10 @@
 <td>{{quiz.amount|floatformat}}</td>
     </tr>
 {% endfor %}
-</table>
+</table> </p>
 
 <br><br><br>
-<a href="{% url 'main' %}" style="alignment: center">Вернуться на главную страницу</a>
+<p style="text-align: center"><a href="{% url 'main' %}">Вернуться на главную страницу</a></p>
 
 </body>
 </html>

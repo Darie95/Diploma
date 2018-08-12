@@ -11,41 +11,57 @@
 $(document).ready(function() {
     $('.datepicker').datepicker({dateFormat: "yy-mm-dd"});
    });
-</script
+</script>
 </head>
 <body>
+ <h1 style="text-align: center" style="color: lightcoral"
+    style="font-size: 48pt" style="background-color: antiquewhite">
+    Quizomania: все о всех квизах Минска</h1><br>
+{% include 'personal.html' %}
 <h3>Фильтр квизов по дате</h3><br>
-<form class="col s6 offset-s3 row" method="POST">
+<form class="col s6 offset-s3 row" method="POST" style="align: center" >
     {% csrf_token %}
         {{form.as_p}}
     {{form.errors}}
   <button id="search_button" class="btn waves-effect blue white-text " type="submit">Поиск</button>
-    </form><br>
+ </form><br>
 <h3>{{text}}</h3><br>
-<table border = "3">
+<p style="text-align: center"><table border = "3">
          <tr>
-            <td>Название</td>
-            <td>Дата регистрации</td>
-            <td>Место игры</td>
-            <td>Дата игры</td>
-            <td>Уже идут</td>
-            <td>Я пойду</td>
+            <td align="center"> <b>Название</b></td>
+            <td align="center"><b>Дата регистрации</b></td>
+            <td align="center"><b>Место игры</b></td>
+            <td align="center"><b>Дата игры</b></td>
+            <td align="center"><b>Уже идут</b></td>
+             {% if request.user.is_authenticated %}
+            <td align="center"><b>Участвовать</b></td>
+             {% endif %}
 
          </tr>
 
 {% for item in data %}
              <tr>
-                 <td> {{item.for_quiz.name}} </td>
-      <td> {{item.game_date_registration}} </td>
-      <td> {{item.game_place}} </td>
-      <td> {{item.game_date}} </td>
-      <td> {{item.amount}} </td>
-                 <td> <a href="{% url 'participant' item.id %}">Я пойду</a> </td>
-       </tr>
+                 <td align="center"> {{item.for_quiz.name}} </td>
+      <td align="center"> {{item.game_date_registration}} </td>
+      <td align="center"> {{item.game_place}} </td>
+      <td align="center"> {{item.game_date}} </td>
+      <td align="center"> {{item.amount}} </td>
+
+                  {% if request.user.is_authenticated %}
+
+                 {% if item.id in invite %}
+                 <td> <a href="{% url 'participant' item.id %}"> Отменить участие</a> </td>
+                 {% else %}
+                  <td> <a href="{% url 'participant' item.id %}"> Я пойду</a> </td>
+                 {% endif %}
+
+                  {% endif %}
+             </tr>
 
     {% endfor %}
 
-</table>
+</table></p>
+ <p style="text-align: center"> <a href="{% url 'main' %}"  style="font-size: 24px">Вернуться на главную страницу</a> </p>
 
 
 </body>

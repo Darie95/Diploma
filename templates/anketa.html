@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Анкета квизомана</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Анкета квизомана{% endblock %}
+{% block content %}
+{% include 'personal.html' %}
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h3>Пожалуйста, заполните несложную анкетку.</h3>
+    <h2>Пожалуйста, заполните несложную анкетку.</h2>
 {% for item in anketa %}
     <label>{{ item.question }} : <select name="mark">
     {% for quest in item.questions.all %}
@@ -22,5 +20,4 @@
 {{users}}
 <a href="{% url 'anketa_result'%}">Посмотреть статистику</a>
 
-</body>
-</html>
+{% endblock %}

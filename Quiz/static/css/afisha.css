@@ -4,17 +4,19 @@ background-color: lightgreen;
 font-size:36px;}
 
 table {
-    margin-left: 400px;
+
     color: darkslategray;
     border-style: solid;
     border-color: green;
-    tab-size: 300px;
+    tab-size: 500px;
     font-size:24px;
 
 }
 
 button {font-size:24px;}
 
-form {margin-left: 500px;
+form {margin-left:40%;
 size: 300px;
- font-size:24px;}
+ font-size:24px;
+}
+

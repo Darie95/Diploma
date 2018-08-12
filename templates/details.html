@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{quiz.name}}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{quiz.name}}{% endblock %}
+{% block content %}
+{% include 'personal.html' %}
 <img width=100 src="{{quiz.label.url}}">
 <h1>{{quiz.name}}</h1><br>
-<h3>О квизе:</h3> {{quiz.description}}
+<a href="{% url 'criteria' quiz.id %}">Пройдите по ссылке и оцените квиз</a><br><br><br>
+<h4>О квизе:</h4> {{quiz.description}}
 <p>
-<h3>Категория:</h3> {{quiz.category}}</p>
+<h4>Категория:</h4> {{quiz.category}}</p>
 <p>
-<h3>Веб-сайт:</h3> <a href="{{quiz.site}}">{{quiz.site}}</a></p>
+<h4>Свежая информация (обновление статуса ВК):</h4> {{quiz.fresh}} Подробности: <a href="{{quiz.site}}">{{quiz.site}}</a></p>
 <p>
-<h3>Дата ближайшей игры:</h3> {{quiz.next_game}}<br></p>
-<a href="{% url 'criteria' quiz.id %}">Оцените квиз</a><br>
+<h4>Дата ближайшей игры:</h4> {{next_date.0}}<br></p>
+
+<div><h1>Отзывы</h1>
+    {% for comment in comments %}
+    <h5 style="color:purple">{{comment.author_com}} оставил(а) комментарий:</h5>
+    <h4 style="background-color: antiquewhite">{{comment.comments_text}}</h4> <br>
+    {% endfor %}
+</div>
+
 <form class="col s6 offset-s3 row" method="POST">
     {% csrf_token %}
     {{form_comments.as_p}}
@@ -25,18 +31,4 @@
             type="submit">Опубликовать
     </button>
 </form>
-
-<div><h3>Отзывы</h3>
-    {% for comment in comments %}
-    <h5>{{comment.author_com}}</h5>
-    <h4>{{comment.comments_text}}</h4> <br>
-    {% endfor %}
-</div>
-{% if request.user.is_authenticated %}
-<p>Вы вошли как {{request.user}}</p>
-<a href="{% url 'logout' %}">Выйти</a>
-{% endif %}
-
-<a href="{% url 'main' %}">Вернуться на главную страницу</a>
-</body>
-</html>
+{% endblock %}

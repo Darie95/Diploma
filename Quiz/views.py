@@ -78,7 +78,13 @@ class Details(View):
             context = {'quiz': Quiz.objects.get(id=quiz_id),
                        'comments': Comments.objects.all().filter(
                            quizz_com=Quiz.objects.get(id=quiz_id)),
-                       'form_comments': CommentForm}
+                       'form_comments': CommentForm,
+                       'next_date': [str(i.min) for i in
+                                     DatesPlaces.objects.filter(
+                                         for_quiz=Quiz.objects.get(
+                                             id=quiz_id)).filter(
+                                         game_date__gte=datetime.now()).annotate(
+                                         min=Min('game_date'))]}
         except Quiz.DoesNotExist:
             return redirect('index')
         return render(self.request, 'details.html', context)
@@ -95,14 +101,26 @@ class Details(View):
                          'comments': Comments.objects.all().filter(
                              quizz_com=Quiz.objects.get(id=quiz_id)),
                          'warning': '',
-                         'form_comments': CommentForm
+                         'form_comments': CommentForm,
+                         'next_date': [str(i.min) for i in
+                                       DatesPlaces.objects.filter(
+                                           for_quiz=Quiz.objects.get(
+                                               id=quiz_id)).filter(
+                                           game_date__gte=datetime.now()).annotate(
+                                           min=Min('game_date'))]
                          }
         else:
             context_1 = {'quiz': Quiz.objects.get(id=quiz_id),
                          'comments': Comments.objects.all().filter(
                              quizz_com=Quiz.objects.get(id=quiz_id)),
                          'form_comments': CommentForm,
-                         'warning': "Добавлять отзывы могут только зарегистрированные пользователи"}
+                         'warning': "Добавлять отзывы могут только зарегистрированные пользователи",
+                         'next_date': [str(i.min) for i in
+                                       DatesPlaces.objects.filter(
+                                           for_quiz=Quiz.objects.get(
+                                               id=quiz_id)).filter(
+                                           game_date__gte=datetime.now()).annotate(
+                                           min=Min('game_date'))]}
         return render(self.request, 'details.html', context_1)
 
 
@@ -117,7 +135,8 @@ class Evaluation(View):
     def post(self, request, quiz_id):
         data = request.POST.getlist("mark")
         lst = [item.id for item in Positions.objects.all()]
-        users = list(Values.objects.filter(quiz=Quiz.objects.get(id=quiz_id)).all().values("user"))
+        users = list(Values.objects.filter(
+            quiz=Quiz.objects.get(id=quiz_id)).all().values("user"))
         users_all = []
         for person in users:
             users_all.append(person["user"])
@@ -210,15 +229,27 @@ def rating(request):
 
 class Dates(View):
     def get(self, request):
+        invite = []
+        parts = list(Participants.objects.filter(
+            user=User.objects.get(id=request.user.id)).all().values("game"))
+        for person in parts:
+            invite.append(person["game"])
+
         context = {'data': DatesPlaces.objects.annotate(
             amount=Count('participation__user')).filter(
             game_date__gte=datetime.now()).select_related('for_quiz').order_by(
             "game_date"),
             'form': FilterForm,
+            'invite': invite,
             'text': "Все ближайшие квизы"}
         return render(self.request, 'afisha.html', context)
 
     def post(self, request):
+        invite = []
+        parts = list(Participants.objects.filter(
+            user=User.objects.get(id=request.user.id)).all().values("game"))
+        for person in parts:
+            invite.append(person["game"])
         if request.POST.get("max_date") >= request.POST.get("min_date"):
             context = {'data': DatesPlaces.objects.annotate(
                 amount=Count('participation__user')).filter(
@@ -226,6 +257,7 @@ class Dates(View):
                 game_date__lte=request.POST.get("max_date")).select_related(
                 'for_quiz').order_by(
                 "game_date"),
+                'invite': invite,
                 'form': FilterForm, 'text': "Результаты поиска"}
 
         else:
@@ -234,6 +266,7 @@ class Dates(View):
                 game_date__gte=datetime.now()).select_related(
                 'for_quiz').order_by(
                 'game_date'), 'form': FilterForm,
+                'invite': invite,
                 'text': "Все ближайшие квизы"}
         return render(self.request, 'afisha.html', context)
 
@@ -246,7 +279,7 @@ class AnketaWrite(View):
     def post(self, request):
         data = request.POST.getlist("mark")
         users = list(AnketaDone.objects.all().values("user"))
-        users_all=[]
+        users_all = []
         for person in users:
             users_all.append(person["user"])
         if request.user.is_authenticated and request.user.id not in users_all:
@@ -570,13 +603,77 @@ class ValueEdit(View):
 
 
 def participant(request, game_id):
-    if request.user.is_authenticated and request.user.id not in [person.id for
-                                                                 person in
-                                                                 Participants.objects.filter(
-                                                                     game=DatesPlaces.objects.get(
-                                                                         id=game_id)).all()]:
+    users = []
+    lst = list(Participants.objects.filter(
+        game=DatesPlaces.objects.get(id=game_id)).all().values("user"))
+    for person in lst:
+        users.append(person["user"])
+    if request.user.is_authenticated and request.user.id not in users:
         Participants.objects.create(user=User.objects.get(id=request.user.id),
                                     game=DatesPlaces.objects.get(id=game_id))
         return HttpResponseRedirect("/afisha/")
+    elif request.user.id in users:
+        Participants.objects.filter(
+            game=DatesPlaces.objects.get(id=game_id)).filter(
+            user=User.objects.get(id=request.user.id)).delete()
+        return HttpResponseRedirect("/afisha/")
     else:
         return HttpResponseRedirect("/login/")
+
+
+class Brainstorm(View):
+    def get(self, request):
+        return render(request, 'quest.html')
+
+    def post(self, request):
+        count = 0
+        answers = []
+        if request.POST.get("right_country") == "on":
+            answers.append("Вы ответили правильно")
+            count += 1
+        else:
+            count = 0
+            answers.append("Вы ответили неправильно")
+        if request.POST.get("right_author") == "on":
+            answers.append("Вы ответили правильно")
+            count += 1
+        else:
+            answers.append("Вы ответили неправильно")
+        if request.POST.get("right_book") == "on":
+            answers.append("Вы ответили правильно")
+            count += 1
+        else:
+            answers.append("Вы ответили неправильно")
+        if request.POST.get("right_row") == "on":
+            answers.append("Вы ответили правильно")
+            count += 1
+        else:
+
+            answers.append("Вы ответили неправильно")
+        if request.POST.get("right_place") == "on":
+            answers.append("Вы ответили правильно")
+            count += 1
+        else:
+
+            answers.append("Вы ответили неправильно")
+        if request.POST.get("right_euro") == "on":
+            answers.append("Вы ответили правильно")
+            count += 1
+        else:
+
+            answers.append("Вы ответили неправильно")
+        if request.POST.get("right_oscar") == "on":
+            answers.append("Вы ответили правильно")
+            count += 1
+        else:
+
+            answers.append("Вы ответили неправильно")
+        note = ""
+        if count > 5:
+            note = "Вы настоящий квизоман,вам подвластные самые сложные и запутанные вопросы. Мы в шоке, как вам удалось так хорошо справиться с тестом:)"
+        elif 3<count<=5:
+            note = "Хороший результат, вы можете быть отличным игроком в любой команде, еще немножко опыта и удачи - и все сложится !"
+        else:
+            note = "Не расстраивайтесь, просто наш тест для везунчиков"
+        return render(request, 'quest_result.html',
+                      {'count': count, 'answers': answers, 'note':note})

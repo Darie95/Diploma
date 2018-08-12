@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{% static 'css/register.css'%}">
 </head>
 <body>
+ <h1 style="text-align: center" style="color: lightcoral"
+    style="font-size: 48pt" style="background-color: antiquewhite">
+    Quizomania: все о всех квизах Минска</h1><br>
+{% include 'personal.html' %}
 <h3>Зарегистрируйся - будь в курсе жизни в мире квизов!</h3>
 <form action="" method="post" class="login">
     {% csrf_token %}

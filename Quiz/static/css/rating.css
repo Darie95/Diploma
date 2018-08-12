@@ -1,5 +1,5 @@
 table {
-    margin-left: 600px;
+
     color: darkslategray;
     border-style: solid;
     border-color: navy;
@@ -11,7 +11,7 @@ h3 {background-color: lavender}
 a:link { color: midnightblue;
      font-family: "Bookman Old Style";
     font-size: 18pt;
-   margin-left: 550px;
+
 
 
 }
@@ -19,5 +19,4 @@ a:link { color: midnightblue;
 a:visited { color: navy;
      font-family: "Bookman Old Style" ;
     font-size: 18pt;
- margin-left: 500px;
-}
+ }

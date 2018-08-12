@@ -1,36 +1,28 @@
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Каталог квизов</title>
-     <link rel="stylesheet" href="{% static 'css/about.css'%}">
-</head>
-<body>
-<h3>Полный список квизов</h3><br>
-<table border = "3">
+{% block title %}Каталог квизов{% endblock %}
+{% block content %}
+<h3 style="text-align: center">Полный список квизов</h3><br>
+{% include 'personal.html' %}
+<p style="text-align: center">
+<table border = "3" width="1000">
          <tr>
-            <td>Название</td>
-            <td>Бренд</td>
-            <td>Категория</td>
+            <td align="center"> <b>Название</b></td>
+            <td align="center"><b>Бренд</b></td>
+            <td align="center"><b>Категория</b></td>
          </tr>
 
          {% for quiz in quiz_all %}
              <tr>
-             <td><a href="{% url 'quiz' quiz.id %}">{{quiz.name}}</a></td>
-             <td>
+             <td align="center"><a href="{% url 'quiz' quiz.id %}">{{quiz.name}}</a></td>
+             <td align="center">
                  <img width=100 src="{{quiz.label.url}}">
                  </td>
-             <td>{{quiz.category}}</td>
+             <td align="center">{{quiz.category}}</td>
           </tr>
          {% endfor %}
 </table>
+</p>
 <br><br><br>
-<a href="{% url 'main' %}" style="margin-left: 500px" style="font-size: 24px">Вернуться на главную страницу</a>
-<br><br><br>
-{% if request.user.is_authenticated %}
-<p>Вы вошли как {{request.user}}</p>
-<br><br><br>
-<a href="{% url 'logout' %}">Выйти</a>
-{% endif %}
-</body>
-</html>
+
+{% endblock %}

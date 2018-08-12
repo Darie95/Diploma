@@ -1,0 +1,49 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Ваши результаты</title>
+</head>
+<body>
+ <h1 style="text-align: center" style="color: lightcoral"
+    style="font-size: 48pt" style="background-color: antiquewhite">
+    Quizomania: все о всех квизах Минска</h1><br>
+{% include 'personal.html' %}
+<p style="text-align: center"><img align="middle" width=200 src="{% static 'sim.jpg'%}"></p><br>
+<h2 style="text-align: center" style="color: darkblue">Вы ответили на {{count}} из 7 вопросов </h2>
+<p style="text-align: center" style="font-style:italic" style="color: navy" style="font-size: 18px"> {{note}} </p><br><br>
+<b> 1 Какой стране принадлежит этот флаг?</b><br><br>
+ <img width=200 src="{% static 'andorra.gif'%}"><br><br>
+<label > Правильный ответ: Андорра </label><br><br>
+<i style="color: navy"> Флаги Андорры и Монако совершенно непохожи друг на друга </i><br><br>
+<label style="color: indianred" > {{answers.0}} </label><br><br>
+<b> 2 Кто автор картины?</b><br><br>
+ <img width=200 src="{% static 'picture.jpg'%}"><br><br>
+<label > Правильный ответ: Моне</label><br><br>
+<i style="color: navy" > Перепутать Моне и Мане -непозволительная дерзость:)</i><br><br>
+<label style="color: indianred" > {{answers.1}} </label><br><br>
+<b> 3 В ребусе зашифровано название книги. Назовите автора.</b><br><br>
+ <img width=200 src="{% static 'picture.jpg'%}"><br><br>
+<label > Правильный ответ: Кен Кизи</label><br><br>
+<i style="color: navy"> Ну конечно же, это "Пролетая над гнездом кукушки"</i><br><br>
+<label style="color: indianred" > {{answers.2}} </label><br><br>
+<b > 4 Что объединяет картинки?</b><br><br>
+ <img width=200 src="{% static 'pogovorka.png'%}"><br><br>
+<label> Правильный ответ: Это поговорка</label><br><br>
+<i style="color: navy"> От любви до ненависти один шаг... Но надеемся, не в случае с квизами:)</i><br><br>
+<label style="color: indianred"> {{answers.3}} </label><br><br>
+<b> 5 Где это находится?</b><br><br>
+<img width=200 src="{% static 'singapore.jpeg'%}"><br><br>
+<label> Правильный ответ: Сингапур</label><br><br>
+<i style="color: navy"> Нет, это не Сидней, ребят</i><br><br>
+<label style="color: indianred"> {{answers.4}} </label><br><br>
+<b> 6 Сколько раз проходило Евровиденье?</b><br><br>
+<label > Правильный ответ: 63 </label><br><br>
+<i style="color: navy" > 64th is coming soon </i><br><br>
+<label style="color: indianred" > {{answers.5}} </label><br><br>
+<b > 7 Получил ли зашифрованный фильм Оскар?</b><br><br>
+<img width=200 src="{% static 'birdman.png'%}"><br><br>
+<label> Правильный ответ: да </label><br><br>
+<i style="color: navy"> Бердмэн...Не будем комментировать) </i><br><br>
+<label style="color: indianred"> {{answers.6}} </label><br><br>
+</body>
+</html>

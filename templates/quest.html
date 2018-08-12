@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестик</title>
+</head>
+<body>
+ <h1 style="text-align: center" style="color: lightcoral"
+    style="font-size: 48pt" style="background-color: antiquewhite">
+    Quizomania: все о всех квизах Минска</h1><br>
+{% include 'personal.html' %}
+<h3 style="color: darkblue" style="font-size: 28px">Пройдите несложный тест и узнайте, насколько вы подготовлены к разнообразным квизам</h3>
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+    <b> 1 Какой стране принадлежит этот флаг?</b><br><br>
+    <img width=200 src="{% static 'andorra.gif'%}"><br><br>
+<input type="checkbox" id="right_country" name="right_country" value="on">
+    <label for="right_country">Андорра</label><br><br>
+<input type="checkbox" id="wrong_country" name="wrong_country" value="on">
+    <label for="wrong_country">Монако</label><br><br>
+     <b> 2 Кто автор картины?</b><br><br>
+    <img width=200 src="{% static 'picture.jpg'%}"><br><br>
+<input type="checkbox" id="wrong_author" name="wrong_author" value="on">
+    <label for="wrong_author">Мане</label><br><br>
+<input type="checkbox" id="right_author" name="right_author" value="on">
+    <label for="right_author">Моне</label><br><br>
+    <b> 3 В ребусе зашифровано название книги. Назовите автора.</b><br><br>
+ <img width=200 src="{% static 'book.png'%}"><br><br>
+    <input type="checkbox" id="right_book" name="right_book" value="on">
+    <label for="right_book">Кен Кизи</label><br><br>
+<input type="checkbox" id="wrong_book" name="wrong_book" value="on">
+    <label for="wrong_book">Сомерсет Моэм</label><br><br>
+     <b> 4 Что объединяет картинки?</b><br>
+     <img width=200 src="{% static 'pogovorka.png'%}"><br><br>
+<input type="checkbox" id="right_row" name="right_row" value="on">
+    <label for="right_row">Это поговорка</label><br><br>
+ <input type="checkbox" id="wrong_row" name="wrong_row" value="on">
+    <label for="wrong_row">Это строчка из песни</label><br><br>   
+     <b> 5 Где это находится?</b><br><br>
+      <img width=200 src="{% static 'singapore.jpeg'%}"><br><br>
+    <input type="checkbox" id="wrong_place" name="wrong_place" value="on">
+    <label for="wrong_place">Австралия</label><br><br>
+    <input type="checkbox" id="right_place" name="right_place" value="on">
+    <label for="right_place">Сингапур</label><br><br>
+     <b> 6 Сколько раз проходило Евровиденье?</b><br><br>
+    <input type="checkbox" id="wrong_euro" name="wrong_euro" value="on">
+    <label for="wrong_euro">64</label><br><br>
+    <input type="checkbox" id="right_euro" name="right_euro" value="on">
+    <label for="right_euro">63</label><br><br>
+    <b> 7 Получил ли зашифрованный фильм Оскар?</b><br><br>
+    <img width=200 src="{% static 'birdman.png'%}"><br><br>
+     <input type="checkbox" id="right_oscar" name="right_oscar" value="on">
+    <label for="right_oscar">Да</label><br><br>
+    <input type="checkbox" id="wrong_oscar" name="wrong_oscar" value="on">
+    <label for="wrong_oscar">Нет</label><br><br>
+<button type="submit">Завершить</button>
+</form>
+</body>
+</html>

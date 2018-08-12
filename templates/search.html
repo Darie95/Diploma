@@ -6,11 +6,17 @@
     <link rel="stylesheet" href="{% static 'css/register.css'%}">
 </head>
 <body>
+ <h1 style="text-align: center" style="color: lightcoral"
+    style="font-size: 48pt" style="background-color: antiquewhite">
+    Quizomania: все о всех квизах Минска</h1><br>
+{% include 'personal.html' %}
 <h4>Введите данные для поиска</h4>
     <form class="col s6 offset-s3 row" method="POST">
     {% csrf_token %}
         {{form.as_p}}
-  <button id="search_button" class="btn waves-effect blue white-text " type="submit">Поиск</button>
+  <button style="alignment: center" id="search_button" class="btn waves-effect blue white-text " type="submit"><img width=50 src="{% static 'search_1.png'%}"></button>
     </form>
+  <p style="text-align: center"><img width=200 src="{% static 'search_result.jpg'%}"></p>
+<p style="text-align: center"><a href="{% url 'main' %}">Вернуться на главную страницу</a></p>
 </body>
 </html>

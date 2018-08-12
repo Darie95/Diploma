@@ -16,9 +16,10 @@ class Quiz(models.Model):
     description = models.TextField(null=True, verbose_name="Описание")
     category = models.CharField(max_length=250, null=True,
                                 verbose_name="Категория")
-    next_game = models.DateField(null=True, verbose_name="Дата следующей игры")
+
     label = models.ImageField(upload_to='items/', verbose_name='Изображение',
                               null=True, blank=True)
+    fresh=models.TextField(null=True, verbose_name="Описание")
 
 
 class Positions(models.Model):
@@ -105,3 +106,9 @@ class Participants(models.Model):
     game = models.ForeignKey(DatesPlaces, related_name='participation',
                              on_delete=models.CASCADE,
                              verbose_name="Мероприятие")
+
+
+
+
+
+

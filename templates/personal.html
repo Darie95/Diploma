@@ -1,0 +1,11 @@
+{% load static %}
+{% if request.user.is_authenticated %}
+<p class="login" style="text-align: right" style="color: purple" style="font-size: 22px"
+   style="background-color:whitesmoke"> <b>Вы вошли как
+    {{request.user}}:</b><a style="color:purple" style="font-size: 22px"
+                            href="{% url 'changes'%}">личный кабинет
+</a><a style="color:purple" style="font-size: 22px"
+                            href="{% url 'logout'%}">выход</a>
+</p>
+<br>
+{% endif %}

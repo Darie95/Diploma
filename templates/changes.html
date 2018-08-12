@@ -1,41 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Личный кабинет</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+{% include 'personal.html' %}
 <h3>Следите за актуальностью своих личных данных</h3><br>
 <span>{{note}}</span><br>
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" style="margin-left: 40%">
     {% csrf_token %}
-    <label> Логин: <input type="text" name="username" required
+    <label> <b style="font-size: 18px">Логин: </b> <input size="50" style="font-size: 18px" type="text" name="username" required
                           value={{request.user.username}}> </label><br><br>
-    <label> E-mail: <input type="text" name="email" required
+    <label> <b style="font-size: 18px">E-mail: </b> <input size="50" style="font-size: 18px" type="text" name="email" required
                            value={{request.user.email}}> </label><br><br>
-    <button type="submit" name="personal_button">Сохранить</button>
+    <button type="submit" name="personal_button" style="font-size:18px">Сохранить</button>
 </form>
 <br>
 <h3>Напоминания о играх, на которые вы собираетесь идти</h3><br>
 {% for item in reminder %}
-Напоминаем, что {{item.game.game_date}} состоится квиз
+<p style="font-size: 20px">Напоминаем, что {{item.game.game_date}} состоится квиз
 {{item.game.for_quiz.name}} в
 {{item.game.game_place}}. Регистрация: {{item.game.game_date_registration}}. Вся
-информация на сайте: <a href="{{item.game.for_quiz.site}}">{{item.game.for_quiz.site}}</a><br>
+    информация на сайте: <a href="{{item.game.for_quiz.site}}">{{item.game.for_quiz.site}}</a></p><br>
 {% endfor %}
 <h3>Ваши последние действия</h3><br>
 {% if comment %}
-<h4>Добавленные комментарии</h4>
+<h4 style="font-size: 22px">Добавленные комментарии</h4>
 {% for com in comment %}
 <label>{{com.comments_date}} добавлен комментарий "{{com.comments_text}}" на
     квиз {{com.quizz_com.name}}
-    <a href="{% url 'comment_edit' com.id %}">Редактировать комментарий</a>
-    <a href="{% url 'comment_delete' com.id %}">Удалить комментарий</a>
+    <a href="{% url 'comment_edit' com.id %}"><img width=50 src="{% static 'pencil.jpg'%}"></a>
+    <a href="{% url 'comment_delete' com.id %}"><img width=50 src="{% static 'delete.jpg'%}"></a>
 </label><br>
 {% endfor %}
 {% endif %}
 {% if value %}
-<h4>Оценка квизов</h4>
+<h4 style="font-size: 22px">Оценка квизов</h4>
 {% for val in value %}
 <span>{{val.value_date}} оценен квиз {{val.quiz.name}} критерий:"{{val.position.name}}" оценка {{val.mark}}</span><br>
 {% endfor %}
@@ -44,12 +42,11 @@
 <a href="{% url 'value_delete' name.id %}">Удалить оценку {{name.name}}</a>
 {% endfor %}{% endif %}
 {% if anketa %}
-<h4>Прохождение анкеты</h4>
+<h4 style="font-size: 22px">Прохождение анкеты</h4>
 {% for response in anketa %}
 <span> {{response.anketa_date}} на вопрос:"{{response.quest.name.question}}" дан ответ: "{{response.quest.option}}"</span><br>
 {% endfor %}
 <a href="{% url 'anketa_edit'%}">Пройти анкету заново</a>
 <a href="{% url 'anketa_delete'%}">Удалить данные анкеты</a>
 {% endif %}
-</body>
-</html>
+{% endblock %}

@@ -1,14 +1,13 @@
 h3 {
     color: purple;
     font-family: "Comic Sans MS";
-    font-size: 36pt;
+    font-size: 28pt;
     background-color: thistle;
-    margin-left: 50px;
+    text-align: center;
 }
 
-table {margin-left: 400px;
-      border-color: purple;
 
+table {border-color: purple; border-style: groove;
 
 }
 
@@ -18,4 +17,13 @@ td {font-family: Constantia;
     border-color: purple;
     border-style: wave;
     }
+
+a:link { color: purple;
+
+
+}
+
+a:visited { color: crimson;
+
+}
 
